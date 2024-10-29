@@ -49,7 +49,7 @@ def latex(p):
     tuiles = []
 
     for (i, t) in enumerate(p):
-        tuiles.append(TUILE[t] + MOTIFS[(2*i) % len(MOTIFS)] + MOTIFS[(2*i + 1) % len(MOTIFS)])
+        tuiles.append(TUILE[t] + MOTIFS[i % len(MOTIFS)] + MOTIFS[(i + 1) % len(MOTIFS)])
     
     return "\n".join(["\\begin{frame}",
                       "  \\hfill",
