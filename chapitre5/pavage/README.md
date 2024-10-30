@@ -7,3 +7,5 @@ Afin de générer les pavages en PDF:
 3. Ouvrir `pavages.pdf`
 
 _La compilation requiert le package TikZ pour LaTeX._
+
+<img src="animation.gif" width="600" alt="Animation">
