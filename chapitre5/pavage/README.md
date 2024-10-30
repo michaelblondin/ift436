@@ -8,4 +8,4 @@ Afin de générer les pavages en PDF:
 
 _La compilation requiert le package TikZ pour LaTeX._
 
-<img src="animation.gif" width="600" alt="Animation">
+<img src="animation.gif" width="500" alt="Animation">
