@@ -106,7 +106,7 @@ Ce sont en effet les deux constantes obtenues dans les notes de cours.
 
 Le calcul de _A⁰b, A¹b, A²b, A³b, …_ s'illustre comme suit:
 
-<img src="figure.png" width="500" alt="Illustration de la récurrence linéaire">
+<img src="figure.png" width="600" alt="Illustration de la récurrence linéaire">
 
 ## Polynôme caractéristique
 
