@@ -66,8 +66,9 @@ De plus, notons que les vecteurs propres de la matrice _A_ précédente sont _v�
 avec les valeurs propres _λ₁ = 2_ et _λ₂ = -1_. En effet:
 
 ```
-A · 1 = 2       A · -1 =  1
-    ½   1            1   -1
+ A    v₁  λ₁v₁      A    v₂   λ₂v₂
+1 2 · 1 = 2      1 2 · -1 =  1
+1 0   ½   1      1 0    1   -1
 ```
 
 Lorsque les valeurs propres sont toutes distinctes, les vecteurs propres forment une base de l'espace
