@@ -7,3 +7,5 @@ Afin de convertir une solution en PDF:
 3. Ouvrir `hanoi.pdf`
 
 _La compilation requiert le package TikZ pour LaTeX._
+
+<img src="animation.gif" width="500" alt="Animation">
