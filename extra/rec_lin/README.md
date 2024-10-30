@@ -104,7 +104,7 @@ t(n) = c₁·λ₁ⁿ + c₂·λ₂ⁿ.
 Dans notre exemple, nous avons _c₁ = d₁·v₁[2] = (8/3)·½ = 4/3_ et _c₂ = d₂·v₂[2] = (-1/3)·1 = -1/3_.
 Ce sont en effet les deux constantes obtenues dans les notes de cours.
 
-Le calcul de _A⁰b, A¹b, A²b, A³b, A⁴b, …_ s'illustre comme suit:
+Les valeurs de _A⁰b, A¹b, A²b, A³b, A⁴b, …_ s'illustrent comme suit:
 
 <img src="figure.png" width="600" alt="Illustration de la récurrence linéaire">
 
