@@ -45,7 +45,7 @@ b = 3    Ab = 5    A(Ab) = 11    A(A(Ab)) = 21    A(A(A(Ab))) = 43
 ```
 
 Ainsi, _Aⁿb_ est le vecteur qui contient les _(n+1)_-ième et _n_-ième termes de la suite.
-Ainsi, afin de trouver la valeur de _t(n)_, on peut calculer _Aⁿb_, puis prendre la
+Par conséquent, afin de trouver la valeur de _t(n)_, on peut calculer _Aⁿb_, puis prendre la
 deuxième valeur du vecteur obtenu. Autrement dit, _t(n) = (Aⁿb)[2]_.
 
 ## Vecteurs et valeurs propres
