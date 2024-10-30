@@ -70,7 +70,7 @@ A · 1 = 2       A · -1 =  1
 
 Lorsque les valeurs propres sont toutes distinctes, les vecteurs propres forment une base de l'espace
 vectoriel. Ainsi, n'importe quel vecteur s'écrit comme une combinaison linéaire des vecteurs propres.
-Ainsi, en particulier, le vecteur _b_ est une combinaison linéaire de _v₁_ et _v₂_. Autrement dit,
+En particulier, le vecteur _b_ est une combinaison linéaire de _v₁_ et _v₂_. Autrement dit,
 il existe des nombres _d₁_ et _d₂_ tels que _b = d₁·v₁ + d₂·v₂_. Dans notre cas, nous avons
 _d₁ = 8/3_ et _d₂ = -1/3_ car
 
