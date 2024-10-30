@@ -118,6 +118,6 @@ obtenues précédemment.
 
 Ainsi, afin d'identifier les valeures propres, la méthode présentée en classe
 identifie plutôt les racines du polynôme caractéristique. De plus, comme la matrice
-_A_ a une forme très particulière, il n'est pas nécessaire de calculer le déterminant.
-On peut montrer que le polynôme caractéristique possède toujours la forme présentée
+_A_ a une forme très particulière, il n'est pas nécessaire de calculer explicitement
+le déterminant. On peut montrer que le polynôme caractéristique possède toujours la forme présentée
 dans les notes de cours.
