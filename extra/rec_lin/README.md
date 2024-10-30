@@ -9,13 +9,13 @@ Cependant, cette annexe est assez technique. Voyons donc les concepts les plus i
 ## Écrire une récurrence linéaire sous forme matricielle
 
 Reconsidérons le problème de pavage du chapitre 5, c'est-à-dire celui où on cherche à paver une grille
-_3 × n_ à l'aide de tuiles de cette forme (sans rotations):
+de largeur _n_ à l'aide de tuiles de cette forme (sans rotations):
 
 ```
 ▌   █   ▙   ▜
 ```
 
-Soit _t(n)_ le nombre de pavages d'une grille _3 × n_. Nous avons vu que
+Soit _t(n)_ le nombre de pavages d'une grille de largeur _n_. Nous avons vu que
 
 ```
 t(1) = 1,
