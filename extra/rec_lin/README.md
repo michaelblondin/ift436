@@ -82,6 +82,10 @@ _d₁ = 8/3_ et _d₂ = -1/3_ car
 (8/3)·½ + (-1/3)·1    = 1
 ```
 
+Visuellement, nous avons:
+
+<img src="figure1.png" width="250" alt="Illustration de la récurrence linéaire">
+
 ## Forme close
 
 En combinant nos observations, nous obtenons:
@@ -107,7 +111,7 @@ Ce sont en effet les deux constantes obtenues dans les notes de cours.
 
 Les valeurs de _A⁰b, A¹b, A²b, A³b, A⁴b, …_ s'illustrent comme suit:
 
-<img src="figure.png" width="600" alt="Illustration de la récurrence linéaire">
+<img src="figure2.png" width="600" alt="Illustration de la récurrence linéaire">
 
 ## Polynôme caractéristique
 
