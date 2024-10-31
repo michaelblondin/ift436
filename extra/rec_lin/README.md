@@ -66,7 +66,7 @@ De plus, notons que les vecteurs propres de la matrice _A_ précédente sont _v�
 avec les valeurs propres _λ₁ = 2_ et _λ₂ = -1_. En effet:
 
 ```
- A    v₁  λ₁v₁      A    v₂   λ₂v₂
+ A    v₁  λ₁v₁    A    v₂   λ₂v₂
 1 2 · 1 = 2      1 2 · -1 =  1
 1 0   ½   1      1 0    1   -1
 ```
