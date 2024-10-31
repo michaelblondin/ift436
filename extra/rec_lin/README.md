@@ -30,8 +30,8 @@ Ainsi, les premiers termes de la suite _t(1), t(2), t(3), t(4), t(5), t(6), …_
 Considérons cette matrice carrée A et ce vecteur colonne b:
 
 ```
-A = 1 2    b = 3
-    1 0        1
+A := 1 2    b := 3
+     1 0         1
 ```
 
 La première ligne de _A_ provient des coefficients du terme général
@@ -100,7 +100,7 @@ t(n) = (Aⁿb)[2]
      = (d₁·v₁[2])·λ₁ⁿ + (d₂·v₂[2])·λ₂ⁿ.
 ```
 
-En posant _c₁ = d₁·v₁[2]_ et _c₂ = d₂·v₂[2]_, on obtient une forme close qui correspond à celle
+En posant _c₁ := d₁·v₁[2]_ et _c₂ := d₂·v₂[2]_, on obtient une forme close qui correspond à celle
 décrite dans les notes de cours:
 
 ```
