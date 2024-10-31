@@ -78,6 +78,7 @@ il existe des nombres _d₁_ et _d₂_ tels que _b = d₁·v₁ + d₂·v₂_. D
 _d₁ = 8/3_ et _d₂ = -1/3_ car
 
 ```
+   d₁v₁        d₂v₂     b
 (8/3)·1 + (-1/3)·(-1) = 3
 (8/3)·½ + (-1/3)·1    = 1
 ```
