@@ -62,8 +62,8 @@ A(Av) = A(λv) = λAv = λλv = λ²v.
 
 Par le même raisonnement, _A(A(Av)) = λ³v_ et plus généralement _Aⁿv = λⁿv_.
 
-De plus, notons que les vecteurs propres de la matrice _A_ précédente sont _v₁ = (1, ½)_ et _v₂ = (-1, 1)_
-avec les valeurs propres _λ₁ = 2_ et _λ₂ = -1_. En effet:
+De plus, notons que les  les valeurs propres de la matrice _A_ précédente sont _λ₁ := 2_ et _λ₂ := -1_.
+En effet, _v₁ := (1, ½)_ et _v₂ := (-1, 1)_ sont des vecteurs propres:
 
 ```
  A   v₁  λ₁v₁     A    v₂   λ₂v₂
@@ -71,8 +71,8 @@ avec les valeurs propres _λ₁ = 2_ et _λ₂ = -1_. En effet:
 1 0   ½   1      1 0    1   -1
 ```
 
-Lorsque les valeurs propres sont toutes distinctes, les vecteurs propres forment une base de l'espace
-vectoriel. Ainsi, n'importe quel vecteur s'écrit comme une combinaison linéaire des vecteurs propres.
+Puisque les valeurs propres sont toutes distinctes, on peut montrer que les vecteurs propres forment une base
+de l'espace vectoriel. Ainsi, n'importe quel vecteur s'écrit comme une combinaison linéaire des vecteurs propres.
 En particulier, le vecteur _b_ est une combinaison linéaire de _v₁_ et _v₂_. Autrement dit,
 il existe des nombres _d₁_ et _d₂_ tels que _b = d₁·v₁ + d₂·v₂_. Dans notre cas, nous avons
 _d₁ = 8/3_ et _d₂ = -1/3_ car
