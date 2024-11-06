@@ -1,6 +1,6 @@
 # Problème de la sous-séquence maximale
 
-Rappelons le problème où, étant donné une séquence de nombres, on cherche à identifier la somme maximale
+Rappelons le problème où, étant donné une séquence de _n_ nombres, on cherche à identifier la somme maximale
 parmi toutes les sous-séquences contigües non vides. Par exemple, sur cette séquence, la somme maximale est 9:
 
 ```
