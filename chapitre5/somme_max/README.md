@@ -12,7 +12,7 @@ Ce billet décrit l'algorithme obtenu en suivant autant que possible la réflexi
 
 ## Approche
 
-Expliquons l'approche à l'aide de l'exemple précédent. On procède en deux étapes.
+Expliquons l'approche à l'aide de l'exemple précédent. On procède en trois étapes.
 
 ### Étape A
 
