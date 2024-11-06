@@ -73,16 +73,16 @@ est par définition _max(sommes[i+1])_.
 Cette identité nous permet donc de calculer _max(somme[i])_ à rebours:
 
 ```
-  max_somme ← [-∞, ... ,-∞, s[n]]
+  max_sommes ← [-∞, ... ,-∞, s[n]]
 
   pour i de n-1 à 1:
-    max_somme[i] ← max(s[i], s[i] + max_somme[i+1])
+    max_sommes[i] ← max(s[i], s[i] + max_sommes[i+1])
 ```
 
 Dans notre exemple, nous obtenons:
 
 ```
-max_somme = [𝟖, 𝟓, 𝟒, 𝟗, 𝟓, 𝟕, 𝟔, -𝟑]
+max_sommes = [𝟖, 𝟓, 𝟒, 𝟗, 𝟓, 𝟕, 𝟔, -𝟑]
 ```
 
 # Étape C
@@ -93,7 +93,7 @@ Il ne reste plus qu'à retourner la meilleure valeur:
   m ← -∞
 
   pour i ∈ [1..n]:
-    m ← max(m, max_somme[i])
+    m ← max(m, max_sommes[i])
 
   retourner m
 ```
@@ -110,16 +110,16 @@ En combinant les trois étapes, on obtient un algorithme qui fonctionne en temps
     ajouter (val_pref[j-1] + s[j]) à val_pref
 
   // Étape B
-  max_somme ← [-∞, ... ,-∞, s[n]]
+  max_sommes ← [-∞, ... ,-∞, s[n]]
 
   pour i de n-1 à 1:
-    max_somme[i] ← max(s[i], s[i] + max_somme[i+1])
+    max_sommes[i] ← max(s[i], s[i] + max_sommes[i+1])
 
   // Étape C
   m ← -∞
 
   pour i ∈ [1..n]:
-    m ← max(m, max_somme[i])
+    m ← max(m, max_sommes[i])
 
   retourner m
 ```
@@ -129,16 +129,16 @@ En combinant les trois étapes, on obtient un algorithme qui fonctionne en temps
 Remarquons que l'étape A est complètement inutile! En effet, la séquence _val_pref_ n'est
 jamais utilisée. Elle n'a été décrite que pour donner de l'intuition.
 De plus, il est possible de simplifier le code en effecutant les étapes B et C
-en même temps, et en remarquant qu'il est inutile de stocker la séquence _max_somme_:
+en même temps, et en remarquant qu'il est inutile de stocker la séquence _max_sommes_:
 
 ```
   // Étapes B et C
-  max_somme_actuel ← s[n]
-  m ← max_somme_actuel
+  max_sommes_actuel ← s[n]
+  m ← max_sommes_actuel
 
   pour i de n-1 à 1:
-    max_somme_actuel ← max(s[i], s[i] + max_somme_actuel)
-    m ← max(m, max_somme_actuel)
+    max_sommes_actuel ← max(s[i], s[i] + max_sommes_actuel)
+    m ← max(m, max_sommes_actuel)
 ```
 
 Nous venons donc de réinventer l'[algorithme de Kadane](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm)!
