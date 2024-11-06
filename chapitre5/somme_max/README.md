@@ -51,9 +51,11 @@ sommes[7] = [–, –,  –,  –,  –,  –, 𝟔,  3]
 sommes[8] = [–, –,  –,  –,  –,  –, –, -𝟑]
 ```
 
-Remarquons que _sommes[1] = val_pref_ obtenue à l'étape A. Ainsi, la première séquence a déjà été
-calculée. Par contre, le calcul des _n - 1_ autres séquences serait forcément
-quadratique puisqu'il y a _(n-1) + (n-2) + … + 1 = n(n-1)/2_ valeurs.
+Remarquons que _sommes[1] = val_pref_. Ainsi, la première séquence a déjà été
+calculée à l'étape A. On pourrait calculer _sommes[2]_ à partir de _s[1]_
+et _sommes[1]_, et ainsi de suite.
+Par contre, le calcul de ces _n - 1_ autres séquences s'effectuerait forcément
+en temps quadratique puisqu'il y a _(n-1) + (n-2) + … + 1 = n(n-1)/2_ valeurs.
 
 Nous allons donc éviter de calculer toutes ces séquences. L'information qui
 nous intéresse réellement est la valeur maximale de _sommes[i]_. Ces nombres
