@@ -70,7 +70,7 @@ bien _s[i]_ (l'élément seul), ou bien une somme de la forme
 _s[i] + s[i+1] + … + s[j]_. La meilleure somme de la forme _s[i+1] + … + s[j]_
 est par définition _max(sommes[i+1])_.
 
-Cette identité nous permet donc de calculer _max(somme[i])_ à rebours:
+Cette identité nous permet donc de calculer _max(sommes[i])_ à rebours:
 
 ```
   max_sommes ← [-∞, ... ,-∞, s[n]]
