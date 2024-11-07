@@ -12,47 +12,6 @@ Ce billet décrit les algorithmes obtenus en suivant autant que possible la réf
 
 ## Approche 1
 
-***Cette section est en construction; ignorez-la pour l'instant et aller lire directement l'approche 2***
-
-La première approche considère la somme de la séquence complète, et fait pointer _i_ et _j_
-respectivement vers le début et la fin de la séquence. À chaque itération, on détermine
-ce qui semble le plus profitable entre incrémenter _i_ et décrémenter _j_:
-
-```
-  i ← 1
-  j ← n
-
-  meilleure_somme ← s[1] + ... + s[n]
-  somme_actuelle  ← meilleure_somme
-
-  tant que i < j:
-    si somme_actuelle - s[i] > somme_actuelle - s[j]:
-      somme_actuelle ← somme_actuelle - s[i]
-      i ← i + 1
-    sinon:
-      somme_actuelle ← somme_actuelle - s[j]
-      j ← j - 1
-
-    meilleure_somme ← max(meilleure_somme, somme_actuelle)
-
-  return meilleure_somme
-```
-
-La procédure maintient ces invariants:
-
-```
-somme_actuelle  = s[i] + ... + s[j]
-meilleure_somme = max{s[x] + ... + s[y] : x ≤ i et j ≤ y}
-```
-
-Ainsi, lorsqu'on termine, on a
-
-```
-meilleure_somme = max{s[x] + ... + s[y] : x ≤ i ≤ y}
-```
-
-## Approche 2
-
 Expliquons l'approche à l'aide de l'exemple précédent. On procède en trois étapes.
 
 ### Étape A
@@ -126,7 +85,7 @@ Dans notre exemple, nous obtenons:
 max_sommes = [𝟖, 𝟓, 𝟒, 𝟗, 𝟓, 𝟕, 𝟔, -𝟑]
 ```
 
-# Étape C
+### Étape C
 
 Il ne reste plus qu'à retourner la meilleure valeur:
 
@@ -139,7 +98,7 @@ Il ne reste plus qu'à retourner la meilleure valeur:
   retourner m
 ```
 
-## Algorithme complet
+### Algorithme complet
 
 En combinant les trois étapes, on obtient un algorithme qui fonctionne en temps _O(n)_:
 
@@ -165,7 +124,7 @@ En combinant les trois étapes, on obtient un algorithme qui fonctionne en temps
   retourner m
 ```
 
-## Simplification du code
+### Simplification du code
 
 Remarquons que l'étape A est complètement inutile! En effet, la séquence _val_pref_ n'est
 jamais utilisée. Elle n'a été décrite que pour donner de l'intuition.
@@ -185,3 +144,69 @@ en même temps, et en remarquant qu'il est inutile de stocker la séquence _max_
 Nous venons donc de réinventer l'[algorithme de Kadane](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm)!
 Il s'agit un exemple d'algorithme qui exploite la programmation dynamique; un paradigme qui sera couvert plus tard dans la
 session.
+
+## Approche 2
+
+***Cette section est en construction; ignorez-la pour l'instant.***
+
+La première approche considère la somme de la séquence complète, et fait pointer _i_ et _j_
+respectivement vers le début et la fin de la séquence. À chaque itération, on détermine
+ce qui semble le plus profitable entre incrémenter _i_ et décrémenter _j_:
+
+```
+  i ← 1
+  j ← n
+
+  somme_actuelle  ← s[1] + ... + s[n]
+  meilleure_somme ← somme_actuelle
+
+  tant que i < j:
+    si somme_actuelle - s[i] > somme_actuelle - s[j]:
+      somme_actuelle ← somme_actuelle - s[i]
+      i ← i + 1
+    sinon:
+      somme_actuelle ← somme_actuelle - s[j]
+      j ← j - 1
+
+    meilleure_somme ← max(meilleure_somme, somme_actuelle)
+
+  return meilleure_somme
+```
+
+La procédure maintient ces invariants:
+
+```
+somme_actuelle  = s[i] + ... + s[j]
+meilleure_somme = max{s[x] + ... + s[y] : x ≤ i et j ≤ y}
+```
+
+Ainsi, lorsqu'on termine, on a
+
+```
+meilleure_somme = max{s[x] + ... + s[y] : x ≤ i ≤ y}
+```
+
+```
+s = [3, 5, -5, 4]
+
+
+i = 1
+j = 4
+somme_actuelle = 7
+meilleure_somme = 7
+
+i = 2
+j = 4
+somme_actuelle = 4
+meilleure_somme = 7
+
+i = 2
+j = 3
+somme_actuelle = 0
+meilleure_somme = 7
+
+i = 2
+j = 2
+somme_actuelle = 5
+meilleure_somme = 7
+```
