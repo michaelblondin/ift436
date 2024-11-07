@@ -7,10 +7,51 @@ parmi toutes les sous-séquences contigües non vides. Par exemple, sur cette s�
 s = [3, 1, -5, 𝟒, -𝟐, 𝟏, 𝟔, -3]
 ```
 
-En classe (A24), des personnes ont proposé une approche prometteuse afin de résoudre le problème.
-Ce billet décrit l'algorithme obtenu en suivant autant que possible la réflexion faite en classe.
+En classe (A24), des personnes ont proposé deux approches prometteuses afin de résoudre le problème.
+Ce billet décrit les algorithmes obtenus en suivant autant que possible la réflexion faite en classe.
 
-## Approche
+## Approche 1
+
+***Cette section est en construction; ignorez-la pour l'instant et aller lire directement l'approche 2***
+
+La première approche considère la somme de la séquence complète, et fait pointer _i_ et _j_
+respectivement vers le début et la fin de la séquence. À chaque itération, on détermine
+ce qui semble le plus profitable entre incrémenter _i_ et décrémenter _j_:
+
+```
+  i ← 1
+  j ← n
+
+  meilleure_somme ← s[1] + ... + s[n]
+  somme_actuelle  ← meilleure_somme
+
+  tant que i < j:
+    si somme_actuelle - s[i] > somme_actuelle - s[j]:
+      somme_actuelle ← somme_actuelle - s[i]
+      i ← i + 1
+    sinon:
+      somme_actuelle ← somme_actuelle - s[j]
+      j ← j - 1
+
+    meilleure_somme ← max(meilleure_somme, somme_actuelle)
+
+  return meilleure_somme
+```
+
+La procédure maintient ces invariants:
+
+```
+somme_actuelle  = s[i] + ... + s[j]
+meilleure_somme = max{s[x] + ... + s[y] : x ≤ i et j ≤ y}
+```
+
+Ainsi, lorsqu'on termine, on a
+
+```
+meilleure_somme = max{s[x] + ... + s[y] : x ≤ i ≤ y}
+```
+
+## Approche 2
 
 Expliquons l'approche à l'aide de l'exemple précédent. On procède en trois étapes.
 
