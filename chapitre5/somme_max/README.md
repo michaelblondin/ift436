@@ -232,9 +232,9 @@ somme_actuelle = s[i] + ... + s[j]
         max(s) = max(s[i : j])
 ```
 
-Ainsi, lorsque l'algorithme se termine, nous avons max(s) = s[i].
+Ainsi, lorsque l'algorithme se termine, nous avons _somme_actuelle = s[i] = max(s)_.
 Cependant, les sommes considérées ne sont pas suffisantes pour
-obtenir la bonne valeur à coup sûr. Considérons la séquence
+obtenir la bonne valeur à coup sûr. Considérons
 _s = [x-1, x-1, -2x, x]_ où _x > 2_. L'algorithme évolue comme suit:
 
 ```
