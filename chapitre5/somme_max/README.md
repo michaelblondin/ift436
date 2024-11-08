@@ -168,7 +168,7 @@ ce qui semble le plus profitable entre incrémenter _i_ et décrémenter _j_:
 
     meilleure_somme ← max(meilleure_somme, somme_actuelle)
 
-  return meilleure_somme
+  retourner meilleure_somme
 ```
 
 Par exemple, voici une exécution qui retourne la bonne valeur:
@@ -222,7 +222,7 @@ se simplifie donc comme suit:
 
     meilleure_somme ← max(meilleure_somme, somme_actuelle)
 
-  return meilleure_somme
+  retourner meilleure_somme
 ```
 
 La procédure maintient ces invariants:
