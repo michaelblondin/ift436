@@ -12,7 +12,7 @@ Ce billet décrit les algorithmes obtenus en suivant autant que possible la réf
 
 ## Approche 1
 
-Expliquons l'approche à l'aide de l'exemple précédent. On procède en trois étapes.
+Expliquons la première approche à l'aide de l'exemple précédent. On procède en trois étapes.
 
 ### Étape A
 
@@ -147,9 +147,7 @@ session.
 
 ## Approche 2
 
-***Cette section est en construction; ignorez-la pour l'instant.***
-
-La première approche considère la somme de la séquence complète, et fait pointer _i_ et _j_
+La seconde approche considère la somme de la séquence complète, et fait pointer _i_ et _j_
 respectivement vers le début et la fin de la séquence. À chaque itération, on détermine
 ce qui semble le plus profitable entre incrémenter _i_ et décrémenter _j_:
 
@@ -173,40 +171,85 @@ ce qui semble le plus profitable entre incrémenter _i_ et décrémenter _j_:
   return meilleure_somme
 ```
 
+Par exemple, voici une exécution qui retourne la bonne valeur:
+
+```
+[3, 1, -5, 4, -2, 1, 6, -3]    somme_actuelle  = 5
+ i                       j     meilleure_somme = 5
+
+[3, 1, -5, 4, -2, 1, 6, -3]    somme_actuelle  = 8
+ i                   j         meilleure_somme = 8
+
+[3, 1, -5, 4, -2, 1, 6, -3]    somme_actuelle  = 5
+    i                j         meilleure_somme = 8
+
+[3, 1, -5, 4, -2, 1, 6, -3]    somme_actuelle  = 4
+        i            j         meilleure_somme = 8
+
+[3, 1, -5, 4, -2, 1, 6, -3]    somme_actuelle  = 9
+           i         j         meilleure_somme = 9
+
+[3, 1, -5, 4, -2, 1, 6, -3]    somme_actuelle  = 5
+               i     j         meilleure_somme = 9
+
+[3, 1, -5, 4, -2, 1, 6, -3]    somme_actuelle  = 7
+                  i  j         meilleure_somme = 9
+
+[3, 1, -5, 4, -2, 1, 6, -3]    somme_actuelle  = 6
+                    ij         meilleure_somme = 9
+```
+
+### Analyse
+
+Remarquons que le test `somme_actuelle - s[i] > somme_actuelle - s[j]` est équivalent à
+`s[i] < s[j]`. Ainsi, le test est indépendant de la somme actuelle. Le code
+se simplifie donc comme suit:
+
+```
+  i ← 1
+  j ← n
+
+  somme_actuelle  ← s[1] + ... + s[n]
+  meilleure_somme ← somme_actuelle
+
+  tant que i < j:
+    si s[i] < s[j]:
+      somme_actuelle ← somme_actuelle - s[i]
+      i ← i + 1
+    sinon:
+      somme_actuelle ← somme_actuelle - s[j]
+      j ← j - 1
+
+    meilleure_somme ← max(meilleure_somme, somme_actuelle)
+
+  return meilleure_somme
+```
+
 La procédure maintient ces invariants:
 
 ```
-somme_actuelle  = s[i] + ... + s[j]
-meilleure_somme = max{s[x] + ... + s[y] : x ≤ i et j ≤ y}
+somme_actuelle = s[i] + ... + s[j]
+        max(s) = max(s[i : j])
 ```
 
-Ainsi, lorsqu'on termine, on a
+Ainsi, lorsque l'algorithme se termine, nous avons max(s) = s[i].
+Cependant, les sommes considérées ne sont pas suffisantes pour
+obtenir la bonne valeur à coup sûr. Considérons la séquence
+_s = [x-1, x-1, -2x, x]_ où _x > 2_. L'algorithme évolue comme suit:
 
 ```
-meilleure_somme = max{s[x] + ... + s[y] : x ≤ i ≤ y}
-```
+[x-1, x-1, -2x, x]    somme_actuelle  = x - 2
+  i             j     meilleure_somme = x - 2
+
+[x-1, x-1, -2x, x]    somme_actuelle  = -1
+       i        j     meilleure_somme = x - 2
+
+[x-1, x-1, -2x, x]    somme_actuelle  = -x
+            i   j     meilleure_somme = x - 2
+
+[x-1, x-1, -2x, x]    somme_actuelle  = x
+               ij     meilleure_somme = x
 
 ```
-s = [3, 5, -5, 4]
 
-
-i = 1
-j = 4
-somme_actuelle = 7
-meilleure_somme = 7
-
-i = 2
-j = 4
-somme_actuelle = 4
-meilleure_somme = 7
-
-i = 2
-j = 3
-somme_actuelle = 0
-meilleure_somme = 7
-
-i = 2
-j = 2
-somme_actuelle = 5
-meilleure_somme = 7
-```
+La valeur retournée est _x_ alors que la somme maximale est _(x-1) + (x-1) = 2x - 2_.
