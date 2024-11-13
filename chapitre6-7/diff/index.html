@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <title>Diff</title>
+  </head>
+  
+  <body>
+    <div style="text-align: center;">
+      <div style="padding-top: 20px; display: flex;
+                  justify-content: center; align-items: center;">
+	  <textarea id="txtA" rows="30" cols="40">int x;
+
+int main()
+{
+  for (int i = 0; i < x; i++)
+    std::cout << i << std::endl;
+}</textarea>
+	  <textarea id="txtB" rows="30" cols="40">int y = 42;
+
+void main()
+{
+  int i = 0;
+
+  for (int i = 0; i < x; i++) {
+    std::cout << i << std::endl;
+  }
+}</textarea>
+	<pre id="parDiff" style="text-align: left; align-self: flex-start; margin-top: 4px;">
+                                        
+        </pre>
+      </div>
+      <div style="padding-top: 20px; display: flex;
+                  justify-content: center; align-items: center;">      
+        <button id="btnComparer"
+                style="border: none; padding: 8px 14px; font-size: 16px;">
+          Comparer
+        </button>
+      </div>      
+    </div>
+
+    <script>
+     let bouton  = document.getElementById("btnComparer");
+     var txtA    = document.getElementById("txtA");
+     var txtB    = document.getElementById("txtB");
+     var parDiff = document.getElementById("parDiff");
+
+     bouton.addEventListener("click",  () => comparer());
+
+     function comparer()
+     {
+	 let u = txtA.value;
+	 let v = txtB.value;
+
+	 // Initialiser tableau
+	 let T = [];
+	 
+	 for (let i = 0; i <= u.length; i++) {
+	     T[i] = [];
+	     
+	     for (let j = 0; j <= v.length; j++) {
+		 if (i == 0)
+		     T[i][j] = j;
+		 else if (j == 0)
+		     T[i][j] = i;
+		 else
+		     T[i][j] = Infinity;
+	     }
+	 }
+
+	 // Calcul dist(u, v) en remplissant le tableau
+	 for (let i = 1; i <= u.length; i++) {
+	     for (let j = 1; j <= v.length; j++) {
+		 // On utile u[i-1] et v[j-1] plutôt que u[i] et v[j]
+		 // car les caractères sont numérotés à partir de 1
+		 let c = (u[i-1] == v[j-1]) ? 0 : 1;
+
+		 let x = (i > 0)          ? T[i-1][j]   : Infinity;
+		 let y = (j > 0)          ? T[i][j-1]   : Infinity;
+		 let z = (i > 0 && j > 0) ? T[i-1][j-1] : Infinity;
+		 
+		 T[i][j] = Math.min(x + 1, y + 1, z + c);
+	     }
+	 }
+
+	 // Reconstruire l'édition de u vers v
+	 let i = u.length;
+	 let j = v.length;
+	 let w = [];
+
+	 while (i > 0 || j > 0) {
+	     let c = (u[i-1] == v[j-1]) ? 0 : 1;
+	     
+	     if (i > 0 && j > 0 && T[i][j] == T[i-1][j-1] + c) {
+		 let col = (c == 0) ? "#90EE90" : "#FFCCCB";
+		 
+		 w.push("<mark style='background: " + col + ";'>" + v[j-1] + "</mark>");
+
+		 i--;
+		 j--;
+	     }
+	     else if (j > 0 && T[i][j] == T[i][j-1] + 1) {
+		 w.push("<mark style='background: #FFCCCB;'>" + v[j-1] + "</mark>");
+
+		 j--;
+	     }
+	     else if (i > 0 && T[i][j] == T[i-1][j] + 1) {
+		 i--;
+	     }
+	 }
+
+	 parDiff.innerHTML = w.reverse().join("");
+     }
+    </script>
+  </body>
+</html>
