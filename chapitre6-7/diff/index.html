@@ -69,7 +69,7 @@ void main()
 	 // Calculer dist(u, v) en remplissant le tableau
 	 for (let i = 1; i <= u.length; i++) {
 	     for (let j = 1; j <= v.length; j++) {
-		 // On utile u[i-1] et v[j-1] plutôt que u[i] et v[j]
+		 // On utilise u[i-1] et v[j-1] plutôt que u[i] et v[j]
 		 // car les caractères sont numérotés à partir de 1
 		 let c = (u[i-1] == v[j-1]) ? 0 : 1;
 
