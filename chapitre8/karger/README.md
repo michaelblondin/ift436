@@ -8,3 +8,5 @@ Afin de générer l'animation:
 Pour accélérer la génération, réduisez la qualité avec `-pql` plutôt que `-p`.
 
 [![Animation](animation.gif)](animation.mp4)
+
+ <!-- GIF généré avec ffmpeg -i animation.mp4 -r 20 -vf scale=512:-1 animation.gif -->
