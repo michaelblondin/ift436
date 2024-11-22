@@ -7,4 +7,4 @@ Afin de générer l'animation:
 
 Pour accélérer la génération, réduisez la qualité avec `-pql` plutôt que `-p`.
 
-<img src="animation.gif" width="500" alt="Animation">
+[![Animation](animation.gif)](animation.mp4)
