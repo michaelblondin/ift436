@@ -7,4 +7,4 @@ Afin de générer l'animation:
 
 Pour accélérer la génération, réduisez la qualité avec `-pql` plutôt que `-p`.
 
-[![Animation]([animation.mp4](https://https://github.com/blondimi/ift436/blob/master/chapitre8/karger/animation.mp4))](animation.mp4)
+[![Animation](animation.gif)](animation.mp4)
