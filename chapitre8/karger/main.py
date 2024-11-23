@@ -34,23 +34,26 @@ class Karger(Scene):
                           y_range   = (0, self.n, max(1, int(self.n / 5))),
                           x_length  = X_LENGTH,
                           y_length  = 2,
-                          x_axis_config = {"font_size": CHART_FONT,
+                          x_axis_config = {"font_size":     CHART_FONT,
                                            "include_ticks": CHART_LABELS},
-                          y_axis_config = {"font_size": CHART_FONT})
+                          y_axis_config = {"font_size":     CHART_FONT})
         
         chart.scale(1.0)
         chart.to_corner(UL)
+        
+        if init:
+            val  = "∞"
+        else:
+            val = str(min([i + 1 for i, v in enumerate(self.tally) if v > 0]))
 
-        val  = "∞" if init else min([i + 1 for i, v in enumerate(self.tally)
-                                     if v > 0])
-        text = Text("Minimum: " + str(val),
+        text = Text(f"Minimum: {val}",
                     font_size = 16).next_to(chart, DOWN)
 
         if init:
             self.chart = chart
             self.text  = text
             self.play(Create(chart), run_time = self.speed)
-            self.play(Write(text), run_time = self.speed)
+            self.play(Write(text),   run_time = self.speed)
             self.wait(duration = self.speed)
         else:
             old_chart  = self.chart
@@ -86,7 +89,7 @@ class Karger(Scene):
             config[uv]["radius"] = RADIUS
         
         self.play(self.G.animate.add_vertices(uv,
-                                              labels = SHOW_LABELS,
+                                              labels        = SHOW_LABELS,
                                               positions     = {uv: pos},
                                               vertex_config = config),
                   run_time = self.speed)
