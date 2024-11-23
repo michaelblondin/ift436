@@ -1,8 +1,19 @@
 from manim  import *
 from random import randint, randrange
 
-EDGE_WIDTH = 3
-LAYOUT     = "circular"
+                          # Pour graphe aléatoire:
+LAYOUT       = "circular" # "kamada_kawai"
+FIX_RADIUS   = False      # True
+SHOW_LABELS  = True       # True
+RADIUS       = 0.3        # 0.05
+EDGE_WIDTH   = 2          # 0.25
+BAR_WIDTH    = 0.1
+X_LENGTH     = 3
+CHART_FONT   = 16
+CHART_LABELS = True       # False
+TALLY_MAX    = 14         # 200
+BASE_SPEED   = 1          # 0.1
+NUM_REP      = 100
 
 def arete(u, v):
     return frozenset({u, v})
@@ -11,37 +22,45 @@ class Karger(Scene):
     def extract(self, u, v):
         return (u, v) if (u, v) in self.G.edges else (v, u)
 
-    # Générer décompte des coupes
-    def gen_tab(self):
-        FORMAT = "#{:>2}:"
-        label  = Text(FORMAT.format(1),
-                      font_size = 16,
-                      font = "Fira Mono").to_edge(UL)
-
-        self.tab = [{"label": label, "value": 0}]
-
-        for i in range(1, len(self.E)):
-            label = Text(FORMAT.format(i+1),
-                         font_size = 16,
-                         font = "Fira Mono").next_to(label, DOWN)
-        
-            self.tab.append({"label": label, "value": 0})
-
-        animation = []
-        
-        for i, _ in enumerate(self.tab):
-            label = self.tab[i]["label"]
-            tally = Text("0",
-                         font_size = 16,
-                         font = "Fira Mono").next_to(label, RIGHT)
+    def update_chart(self, init = False):
+        if CHART_LABELS:
+            labels = [str(i) for i in range(1, len(self.tally) + 1)]
+        else:
+            labels = None
             
-            self.tab[i]["tally"] = tally
+        chart  = BarChart(self.tally,
+                          bar_names = labels,
+                          bar_width = BAR_WIDTH,
+                          y_range   = (0, self.n, max(1, int(self.n / 5))),
+                          x_length  = X_LENGTH,
+                          y_length  = 2,
+                          x_axis_config = {"font_size": CHART_FONT,
+                                           "include_ticks": CHART_LABELS},
+                          y_axis_config = {"font_size": CHART_FONT})
+        
+        chart.scale(1.0)
+        chart.to_corner(UL)
 
-            animation.append(Write(label))
-            animation.append(Write(tally))
+        val  = "∞" if init else min([i + 1 for i, v in enumerate(self.tally)
+                                     if v > 0])
+        text = Text("Minimum: " + str(val),
+                    font_size = 16).next_to(chart, DOWN)
 
-        self.play(*animation)
-        self.wait(duration = self.speed)
+        if init:
+            self.chart = chart
+            self.text  = text
+            self.play(Create(chart), run_time = self.speed)
+            self.play(Write(text), run_time = self.speed)
+            self.wait(duration = self.speed)
+        else:
+            old_chart  = self.chart
+            old_text   = self.text
+            self.chart = chart
+            self.text  = text
+            self.play(ReplacementTransform(old_chart, chart,
+                                           run_time = self.speed))
+            self.remove(old_text)
+            self.play(Write(text), run_time = self.speed)
         
     # Animer une itération de l'algo. de Karger
     def anim_merge(self, u, v):
@@ -59,14 +78,18 @@ class Karger(Scene):
         uv  = u + v
         pos = (self.G.vertices[u].get_center() +
                self.G.vertices[v].get_center()) / 2
+
+        config = {uv: {"stroke_color": BLUE,
+                       "stroke_width": 5}}
+
+        if FIX_RADIUS:
+            config[uv]["radius"] = RADIUS
         
-        self.play(self.G.animate.add_vertices(
-            uv,
-            labels = True,
-            positions     = {uv: pos},
-            vertex_config = {uv: {"stroke_color": BLUE,
-                                  "stroke_width": 5}}),
-            run_time = self.speed)
+        self.play(self.G.animate.add_vertices(uv,
+                                              labels = SHOW_LABELS,
+                                              positions     = {uv: pos},
+                                              vertex_config = config),
+                  run_time = self.speed)
         self.wait(duration = self.speed)
                 
         self.play(Transform(self.G[u], self.G[uv]), run_time = self.speed)
@@ -133,25 +156,16 @@ class Karger(Scene):
         res  = Text(str(val)).next_to(pos, DOWN)
 
         self.add(res)
-
-        # Mettre décompte à jour
-        entry = self.tab[val-1]
-        
-        entry["value"] += 1
-        
-        count     = entry["value"]
-        new_tally = Text(str(count),
-                         font_size = 16,
-                         font = "Fira Mono").next_to(entry["label"])
-
-        self.play(Transform(entry["tally"], new_tally),
-                  run_time = self.speed)
-
         self.wait(duration = self.speed)
+
+        print(val)
+        self.tally[val-1] += 1
+        self.update_chart()
+
         self.remove(res)
 
     def gen_graph(self):
-        # Graphe des notes de cours
+        # # Graphe des notes de cours
         # self.V = {"a", "b", "c", "d", "e"}
         # self.E = {arete("a", "b"), arete("a", "c"),
         #           arete("a", "d"), arete("b", "c"),
@@ -167,6 +181,11 @@ class Karger(Scene):
                   arete("d", "f"), arete("d", "h"), arete("d", "i"),
                   arete("e", "f"), arete("e", "g"), arete("e", "h"),
                   arete("f", "g"), arete("f", "h"), arete("g", "h")}
+
+        # # Graphe aléatoire
+        # self.V = set("v" + str(i) for i in range(50))
+        # self.E = {arete(u, v) for u in self.V for v in self. V
+        #           if u != v and randint(1, 6) == 1}
         
         self.P = {e: 1 for e in self.E}
 
@@ -176,32 +195,34 @@ class Karger(Scene):
         return Graph(vertices,
                      edges,
                      layout = LAYOUT,
-                     labels = True,
-                     vertex_config = {v: {"radius": 0.3} for v in self.V},
+                     labels = SHOW_LABELS,
+                     vertex_config = {v: {"radius": RADIUS} for v in self.V},
                      edge_config   = {e: {"stroke_width": EDGE_WIDTH}
                                       for e in edges})
 
     # Point d'entrée de la scène
     def construct(self):
-        self.speed = 1
+        self.speed = BASE_SPEED
+        self.n     = NUM_REP
 
         # Générer et afficher graphe
         self.G = self.gen_graph()
         self.play(Create(self.G), run_time = self.speed)
         self.wait(duration = self.speed)
 
-        # Générer tableau des décomptes
-        self.gen_tab()
-
+        # Générer diagramme des décomptes
+        self.tally = [0] * TALLY_MAX
+        self.update_chart(init = True)
+    
         # Exécuter l'algo. de Karger n fois
-        n = 100
-        
-        for _ in range(n):
+        for _ in range(self.n):
             self.exec_karger()
             self.speed /= 5.0
 
             self.remove(self.G)
-
+            
             self.G = self.gen_graph()
             self.play(Create(self.G), run_time = self.speed)
             self.wait(duration = self.speed)
+
+        self.wait(duration = 2)
