@@ -4,14 +4,16 @@ from random import randint, randrange
                           # Pour graphe aléatoire:
 LAYOUT       = "circular" # "kamada_kawai"
 FIX_RADIUS   = False      # True
-SHOW_LABELS  = True       # True
+SHOW_LABELS  = True       # False
 RADIUS       = 0.3        # 0.05
 EDGE_WIDTH   = 2          # 0.25
-BAR_WIDTH    = 0.1
+BAR_WIDTH    = 0.1        # 0.2
 X_LENGTH     = 3
 CHART_FONT   = 16
 CHART_LABELS = True       # False
-TALLY_MAX    = 14         # 200
+TALLY_X_MAX  = 14         # 250
+TALLY_Y_MAX  = 50         # 20
+TALLY_Y_TICK = 20         # 5
 BASE_SPEED   = 1          # 0.1
 NUM_REP      = 100
 
@@ -31,7 +33,7 @@ class Karger(Scene):
         chart  = BarChart(self.tally,
                           bar_names = labels,
                           bar_width = BAR_WIDTH,
-                          y_range   = (0, self.n, max(1, int(self.n / 5))),
+                          y_range   = (0, TALLY_Y_MAX, TALLY_Y_TICK),
                           x_length  = X_LENGTH,
                           y_length  = 2,
                           x_axis_config = {"font_size":     CHART_FONT,
@@ -40,13 +42,10 @@ class Karger(Scene):
         
         chart.scale(1.0)
         chart.to_corner(UL)
-        
-        if init:
-            val  = "∞"
-        else:
-            val = str(min([i + 1 for i, v in enumerate(self.tally) if v > 0]))
 
-        text = Text(f"Minimum: {val}",
+        val  = "∞" if init else min([i + 1 for i, v in enumerate(self.tally)
+                                     if v > 0])
+        text = Text("Minimum: " + str(val),
                     font_size = 16).next_to(chart, DOWN)
 
         if init:
@@ -89,7 +88,7 @@ class Karger(Scene):
             config[uv]["radius"] = RADIUS
         
         self.play(self.G.animate.add_vertices(uv,
-                                              labels        = SHOW_LABELS,
+                                              labels = SHOW_LABELS,
                                               positions     = {uv: pos},
                                               vertex_config = config),
                   run_time = self.speed)
@@ -161,7 +160,6 @@ class Karger(Scene):
         self.add(res)
         self.wait(duration = self.speed)
 
-        print(val)
         self.tally[val-1] += 1
         self.update_chart()
 
@@ -214,7 +212,7 @@ class Karger(Scene):
         self.wait(duration = self.speed)
 
         # Générer diagramme des décomptes
-        self.tally = [0] * TALLY_MAX
+        self.tally = [0] * TALLY_X_MAX
         self.update_chart(init = True)
     
         # Exécuter l'algo. de Karger n fois
