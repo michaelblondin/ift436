@@ -9,4 +9,6 @@ Pour accélérer la génération, réduisez la qualité avec `-pql` plutôt que 
 
 [![Animation](animation.gif)](animation.mp4)
 
-_Remarque: cette image a été générée avec `ffmpeg -i animation.mp4 -r 20 -vf scale=512:-1 animation.gif`._
+![Animation](animation2.gif)
+
+_Remarque: ces images ont été générées avec `ffmpeg -i animation.mp4 -r 20 -vf scale=512:-1 animation.gif`._
