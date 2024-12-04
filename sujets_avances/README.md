@@ -24,4 +24,5 @@
 
 ### Références
 
+- [Maxime Dion: _Introduction au calcul quantique_](https://oneminimax.github.io/)
 - [Isaac Chuang et Michael Nielsen: _Quantum Computation and Quantum Information_. Cambridge University Press](https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE#overview)
