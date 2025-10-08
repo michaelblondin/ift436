@@ -217,7 +217,7 @@
 	 let sommet = cible;
 
 	 ctx.lineWidth   = saut() / 4;
-	 ctx.strokeStyle = "red";
+	 ctx.strokeStyle = (selMode.value == "bfs" ? "blue" : "red");
 	 ctx.beginPath();
 	 ctx.moveTo((sommet[1] + 0.5) * saut(), (sommet[0] + 0.5) * saut());
 	 
@@ -230,6 +230,7 @@
 	     }
              else {
 		 clearInterval(animation);
+		 btnResoudre.disabled = false;
              }
 	 };
 
