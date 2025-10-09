@@ -64,7 +64,7 @@ En fait, la deuxième fonction croît plus rapidement:
 
 _Preuve_. La première affirmation découle de $(n/2)! \leq n! = 2 \cdot (n! / 2!)$.
 
-Pour la seconde affirmation, supposons que $n!/2! \in O((n/2)!)$. Il existe une
+Pour la seconde affirmation, supposons que $n!/2! \in O((n/2)!)$. Il existe donc une
 constante $c$ et un seuil $n_0$ tels que $n!/2! \leq c(n/2)!$ pour tout $n \geq n_0$.
 Soit $n > 0$ un nombre pair supérieur à $n_0$ et $2c$. Nous obtenons une contradiction:
 ```math
