@@ -44,7 +44,7 @@ f_3(n)
 
 Rappelons qu'au #1(d) de l'examen de 2024, nous avons considéré la fonction $(n/2)!$.
 Certaines personnes du deuxième groupe ont tenté de me convaincre que $(n/2)! = n!/2!$,
-et plus généralement que $(n/c)! = n!/c!$. J'ai failli m'avouer vaincu et y croire, mais
+et plus généralement que $(n/k)! = n!/k!$. J'ai failli m'avouer vaincu et y croire, mais
 j'ai dit que j'allais garder au moins 1% de doute. Ce doute l'a finalement emporté! :sunglasses:
 
 Les deux termes ne sont égaux que pour $n = 2$:
