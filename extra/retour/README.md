@@ -47,7 +47,7 @@ Certaines personnes du deuxième groupe ont tenté de me convaincre que $(n/2)! 
 et plus généralement que $(n/c)! = n!/c!$. J'ai failli m'avouer vaincu et y croire, mais
 j'ai dit que j'allais garder au moins 1% de doute. Ce doute l'a finalement emporté! :sunglasses:
 
-En fait, les deux termes ne sont égaux que pour $n = 2$:
+Les deux termes ne sont égaux que pour $n = 2$:
 
 |n |(n/2)!| n!/2! |
 |-:|-----:|------:|
