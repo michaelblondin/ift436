@@ -23,7 +23,7 @@ _Preuve_. Nous avons
 \end{align*}
 ```
 
-Il y a façon de montrer que $f_3 \in \Theta(n^3)$ sans invoquer cette proposition
+Il y a une façon de montrer que $f_3 \in \Theta(n^3)$ sans invoquer cette proposition
 et sans faire trop de calculs:
 
 **Proposition**: $$f_3(n) \in \Theta(n^3)$$.
