@@ -18,10 +18,13 @@ _Preuve_. Nous avons
 &= \sum_{j=1}^n j - \sum_{j=1}^{i-1} j \\[5pt]
 &= \frac{n(n+1)}{2} - \frac{(i-1)i}{2} \\[5pt]
 &= \frac{n^2 + n - i^2 + i}{2} \\[5pt]
+&= \frac{n^2 + ni - ni - i^2 + n + i}{2} \\[5pt]
 &= \frac{(n - i + 1)(n + i)}{2}. &&\square
 \end{align*}
 ```
-Il y a une autre façon de montrer que $f_3 \in \Theta(n^3)$ sans faire trop de calculs:
+
+Il y a une autre façon de montrer que $f_3 \in \Theta(n^3)$ sans invoquer cette proposition
+et sans faire trop de calculs:
 
 **Proposition**: $$f_3(n) \in \Theta(n^3)$$.
 
@@ -41,7 +44,7 @@ f_3(n)
 
 Rappelons qu'au #1(d) de l'examen de 2024, nous avons considéré la fonction $(n/2)!$.
 Certaines personnes ont tenté de me convaincre que $(n/2)! = n!/2!$, et plus généralement que
-$(n/c)! = n!/c!. J'ai failli m'avouer vaincu et y croire, mais j'ai dit que j'allais
+$(n/c)! = n!/c!$. J'ai failli m'avouer vaincu et y croire, mais j'ai dit que j'allais
 garder au moins 1% de doute. Ce doute l'a finalement emporté! :sunglasses:
 
 En fait, les deux termes ne sont égaux que pour $n = 2$:
@@ -55,7 +58,7 @@ En fait, les deux termes ne sont égaux que pour $n = 2$:
 |8 |  24  |  20160|
 |10| 120  |1814400|
 
-Pire encore, les deux fonctions ne sont pas équivalentes asymptotiquement:
+En fait, la deuxième fonction croît plus rapidement:
 
 **Proposition**: Nous avons $(n/2)! \in O(n!/2!)$ et $n!/2! \notin O((n/2)!)$.
 
