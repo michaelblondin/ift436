@@ -76,16 +76,18 @@ def rectangles(blocs, coins=False):
 
     return "\n".join(rect + pts)
 
-def tracer_chemin(c, coins=False):
+def tracer_chemin(c, coins, opacite, contour, couleur):
     pts = ["({}, {})".format(i, j) for (i, j) in c]
-    tr  = "\\draw[fill=gray!25] {} -- cycle;".format(" -- ".join(pts))
+    tr  = "\\draw[draw={}, fill={}, fill opacity={}]"\
+          " {} -- cycle;".format(contour, couleur, opacite, " -- ".join(pts))
 
     if coins: tr += "\n".join(point(p) for p in c)
 
     return tr
 
-def tracer(chem, coins=False):
-    return "\n".join(tracer_chemin(c, coins) for c in chem)
+def tracer(chem, coins=False, opacite=1.0, contour="black", couleur="gray!50"):
+    return "\n".join(tracer_chemin(c, coins, opacite,
+                                   contour, couleur) for c in chem)
 
 def figure(code):
     return "\n".join(["  \\begin{frame}",
