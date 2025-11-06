@@ -17,3 +17,9 @@ Le script `distribution.py` génère les animations ci-dessous. Cela répond par
 aléatoires obtenus par une loi exponentielle ou uniforme:
 
 <img src="img/animation_exp.gif" width="500" alt="Animation"><img src="img/animation_unif.gif" width="500" alt="Animation">
+
+### Largeur
+
+Le script redimensionne chaque pavage à la largeur de l'image. Sans cette redimension, on obtient:
+
+<img src="img/animation_exp2.gif" width="500" alt="Animation"><img src="img/animation_unif2.gif" width="500" alt="Animation">
