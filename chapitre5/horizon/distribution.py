@@ -59,11 +59,11 @@ if __name__ == "__main__":
     variance    = lambda p: (1.0 / param**2) * CONST**2    
 
     ## Distrib. uniforme
-    nom_distrib = lambda p: "\\mathrm{{Unif}}({:.2f})\\cdot{}".format(2.0 / p,
-                                                                      CONST)
-    distrib     = lambda p: int(uniform(0, 2.0 / p) * CONST)
-    esperance   = lambda p: (1.0 / param) * CONST
-    variance    = lambda p: (1.0/12)*(2.0 / p)**2 * CONST**2
+    # nom_distrib = lambda p: "\\mathrm{{Unif}}({:.2f})\\cdot{}".format(2.0 / p,
+    #                                                                   CONST)
+    # distrib     = lambda p: int(uniform(0, 2.0 / p) * CONST)
+    # esperance   = lambda p: (1.0 / param) * CONST
+    # variance    = lambda p: (1.0/12)*(2.0 / p)**2 * CONST**2
 
     # Génération des paysages "moyens" selon la distribution
     param_max = 50
