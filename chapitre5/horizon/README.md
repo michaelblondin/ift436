@@ -12,9 +12,9 @@ _La compilation requiert le package TikZ pour LaTeX._
 
 ## Distribution des paysages
 
-Le script `distribution.py` génère les animations ci-dessous. Cela répond partiellement
-à une question posée en classe (A25) à propos de la distribution des paysages
-aléatoires obtenus par une loi exponentielle ou uniforme:
+Le script `distribution.py` génère les animations ci-dessous. Chaque dessin est constitué de 100 pavages
+aléatoires de 100 blocs superposés par semi-transparence. Cela répond partiellement à une question posée
+en classe (A25) à propos de la distribution des paysages aléatoires obtenus par une loi exponentielle ou uniforme:
 
 <img src="img/animation_exp.gif" width="500" alt="Animation"><img src="img/animation_unif.gif" width="500" alt="Animation">
 
