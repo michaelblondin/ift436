@@ -14,9 +14,10 @@ _La compilation requiert le package TikZ pour LaTeX._
 
 Le script `distribution.py` génère les animations ci-dessous. Chaque dessin est constitué de 100 pavages
 aléatoires de 100 blocs superposés par semi-transparence. Cela répond partiellement à une question posée
-en classe (A25) à propos de la distribution des paysages aléatoires obtenus par une loi exponentielle ou uniforme:
+en classe (A25) à propos de la distribution des paysages aléatoires obtenus par une loi exponentielle ou uniforme.
+Cliquez sur les  animations pour les voir en pleine résolution.
 
-<img src="img/animation_exp.gif" width="500" alt="Animation"><img src="img/animation_unif.gif" width="500" alt="Animation">
+[<img src="img/animation_exp.gif" width="500" alt="Animation">](img/exp.pdf)[<img src="img/animation_unif.gif" width="500" alt="Animation">](img/unif.pdf)
 
 ### Largeur
 
