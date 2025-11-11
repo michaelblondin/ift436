@@ -8,5 +8,7 @@ Le script `distribution.py` génère les animations ci-dessous. Chaque dessin es
 de récursion des algorithmes exécutés sur 100 objets et sacs à dos aléatoires.
 
 [<img src="img/animation_naif.gif" width="500" alt="Animation">](img/naif.pdf)
+
 [<img src="img/animation_elagage.gif" width="500" alt="Animation">](img/elagage.pdf)
+
 [<img src="img/animation_elagage++.gif" width="500" alt="Animation">](img/elagage++.pdf)
