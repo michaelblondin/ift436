@@ -1,6 +1,6 @@
 # Problème du sac à dos
 
-Les implémentations des algorithmes se trouvent sous ```sac_a_dos.py```.
+Les implémentations des algorithmes se trouvent dans ```sac_a_dos.py```.
 
 ## Distribution des arbres de récursion
 
