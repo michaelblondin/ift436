@@ -16,7 +16,7 @@ Sortie: nombre distribué uniformément parmi [1..6]
   retourner 4·y₂ + 2·y₁ + y₀
 ```
 
-En classe (A22), des personnes ont suggéré des approches
+En classe (A22, A25), des personnes ont suggéré des approches
 alternatives pour gérer le cas où ``y₂ = y₁ = y₀``.
 
 ## Alternative 1
@@ -149,6 +149,112 @@ qui est mieux que l'algorithme vu en classe dont l'espérance est 4:
              = 3 + (1/4) · 2
              = 3.5
 ```
+
+## Alternative 3
+
+Dans la troisième approche alternative, on choisit ``y₂`` en faisant
+une distinction entre l'égalité ou l'inégalité des deux premiers bits:
+
+```
+Entrée: —
+Sortie: nombre distribué uniformément parmi [1..6]
+
+  choisir un bit y₂ à pile ou face
+  choisir un bit y₁ à pile ou face
+
+  si y₂ = y₁:
+    y₀ ← 1 - y₁
+  sinon:
+    choisir un bit y₀ à pile ou face
+
+  retourner 4·y₂ + 2·y₁ + y₀
+```
+
+Cette procédure est biaisée. Par exemple, la probabilité de générer 6,
+c.-à-d. la chaîne ```110```, est de 1/4 plutôt que 1/6.
+
+En général, voici la distribution obtenue:
+
+|*1*|*2*|*3*|*4*|*5*|*6*|
+|---|---|---|---|---|---|
+|1/4|1/8|1/8|1/8|1/8|1/4|
+|0.25|0.125|0.125|0.125|0.125|0.125|0.125|0.25|
+
+L'espérance du nombre de lancers de pièces est de 2.5.
+
+## Alternative 4
+
+Dans la quatrième approche alternative, on choisit la position d'un bit
+qui sera ```1```, puis la position d'un bit qui sera ```0```, puis un
+bit aléatoire pour la dernière position:
+
+```
+Entrée: —
+Sortie: nombre distribué uniformément parmi [1..6]
+
+  choisir a ∈ {-1, 1} à pile ou face
+  choisir b ∈ {0, 1}  à pile ou face
+  choisir i ∈ {0, 1, 2} aléatoirement de façon uniforme    // Position du bit qui vaut 1
+  j ← (i + a) mod 3                                        // Position du bit qui vaut b
+
+  retourner 2ⁱ + b·2ʲ
+```
+
+Cette procédure fonctionne! Le graphe de probabilités ci-dessous montre que chaque nombre
+peut être atteint par deux chemins, chacun de probabilité _1/3 · 1/2 · 1/2 = 1/12_. Ainsi,
+chaque nombre est obtenu avec probabilité _2·(1/12) = 1/6_.
+
+```mermaid
+graph TD;
+    ???-- 1/3 -->??1;
+    ???-- 1/3 -->?1?;
+    ???-- 1/3 -->1??;
+
+    ??1-- 1/2 -->?01;
+    ??1-- 1/2 -->0?1;
+    ?1?-- 1/2 -->?10;
+    ?1?-- 1/2 -->01?;
+    1??-- 1/2 -->1?0;
+    1??-- 1/2 -->10?;
+
+    ?01-. 1/2 ..->001;
+    ?01-- 1/2 --->101;
+    0?1-. 1/2 ..->001;
+    0?1-- 1/2 --->011;
+    ?10-. 1/2 ..->010;
+    ?10-- 1/2 --->110;
+    01?-. 1/2 ..->010;
+    01?-- 1/2 --->011;
+    1?0-. 1/2 ..->100;
+    1?0-- 1/2 --->110;
+    10?-. 1/2 ..->100;
+    10?-- 1/2 --->101;
+```
+
+Il y a toutefois un enjeu avec cette approche: on suppose qu'on a accès à une pièce à trois faces.
+Si ce n'est pas le cas, on doit émuler cette pièce, par ex. comme suit:
+
+```
+Entrée: —
+Sortie: nombre distribué uniformément parmi [1..6]
+
+  choisir a ∈ {-1, 1} à pile ou face
+  choisir b ∈ {0, 1}  à pile ou face
+
+  faire:
+    choisir un bit i₁ à pile ou face
+    choisir un bit i₀ à pile ou face
+  tant que i₁ = i₀ = 1
+
+  i ← 2·i₁ + i₀        // Position du bit qui vaut 1
+  j ← (i + a) mod 3    // Position du bit qui vaut b
+
+  retourner 2ⁱ + b·2ʲ
+```
+
+Dans cette implémentation, L'espérance du nombre de lancers de pièces est de
+_2 + 2·(1 / (3 / 4)) = 2 + 8/3 = 14/3 = 4.66⋯_, ce qui est pire que l'algorithme vu en classe
+dont l'espérance est 4.
 
 ## Modélisation avec PRISM
 
