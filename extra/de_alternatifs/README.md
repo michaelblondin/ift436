@@ -261,7 +261,8 @@ dont l'espérance est 4.
 Pour les personnes curieuses, sachez que ces analyses peuvent être automatisées à l'aide de
 l'outil [PRISM](http://www.prismmodelchecker.org/):
 
-* Approche du chapitre 8: [``procedure1.prism``](./procedure1.prism)
-* Approche alternative 1: [``procedure2.prism``](./procedure2.prism)
-* Approche alternative 2: [``procedure3.prism``](./procedure3.prism)
+* Approche du chapitre 8: [``procedure0.prism``](./procedure0.prism)
+* Approche alternative 1: [``procedure1.prism``](./procedure1.prism)
+* Approche alternative 2: [``procedure2.prism``](./procedure2.prism)
+* Approche alternative 4: [``procedure4.prism``](./procedure4.prism)
 * Propriétés à vérifier: [``propietes.pctl``](./proprietes.pctl)
