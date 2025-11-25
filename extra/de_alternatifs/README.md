@@ -200,10 +200,36 @@ Sortie: nombre distribué uniformément parmi [1..6]
   retourner 2ⁱ + b·2ʲ
 ```
 
-Cette procédure fonctionne! Remarquons d'abord que, par construction, la chaîne de bits
-en sortie contient au moins une occurrence de ```0``` et de ```1```. Ainsi, la procédure
-ne retourne que des nombres de _[1..6]_. Évaluons la probabilité d'obtenir la chaîne
-_xyz_...
+Cette procédure fonctionne! Le graphe de probabilités ci-dessous montre que chaque nombre
+peut être atteint par deux chemins, chacun de probabilité _1/3 · 1/2 · 1/2 = 1/12_. Ainsi,
+chaque nombre est obtenu avec probabilité _2·(1/12) = 1/6_.
+
+```mermaid
+graph TD;
+    ???-- 1/3 -->??1;
+    ???-- 1/3 -->?1?;
+    ???-- 1/3 -->1??;
+
+    ??1-- 1/2 -->?01;
+    ??1-- 1/2 -->0?1;
+    ?1?-- 1/2 -->?10;
+    ?1?-- 1/2 -->01?;
+    1??-- 1/2 -->1?0;
+    1??-- 1/2 -->10?;
+
+    ?01-. 1/2 ..->001;
+    ?01-- 1/2 --->101;
+    0?1-. 1/2 ..->001;
+    0?1-- 1/2 --->011;
+    ?10-. 1/2 ..->010;
+    ?10-- 1/2 --->110;
+    01?-. 1/2 ..->010;
+    01?-- 1/2 --->011;
+    1?0-. 1/2 ..->100;
+    1?0-- 1/2 --->110;
+    10?-. 1/2 ..->100;
+    10?-- 1/2 --->101;
+```
 
 ## Modélisation avec PRISM
 
