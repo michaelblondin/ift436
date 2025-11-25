@@ -192,8 +192,8 @@ bit aléatoire pour la dernière position:
 Entrée: —
 Sortie: nombre distribué uniformément parmi [1..6]
 
-  choisir a ∈ {-1, 1} à pile ou face
-  choisir b ∈ {0, 1}  à pile ou face
+  choisir a ∈ {-1, 1}   à pile ou face
+  choisir b ∈ {0, 1}    à pile ou face
   choisir i ∈ {0, 1, 2} aléatoirement de façon uniforme    // Position du bit qui vaut 1
   j ← (i + a) mod 3                                        // Position du bit qui vaut b
 
