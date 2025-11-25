@@ -244,7 +244,7 @@ Sortie: nombre distribué uniformément parmi [1..6]
   faire:
     choisir un bit i₁ à pile ou face
     choisir un bit i₀ à pile ou face
-  tant que y₁ = y₀ = 1
+  tant que i₁ = i₀ = 1
 
   i ← 2·i₁ + i₀        // Position du bit qui vaut 1
   j ← (i + a) mod 3    // Position du bit qui vaut b
