@@ -16,7 +16,7 @@ Sortie: nombre distribué uniformément parmi [1..6]
   retourner 4·y₂ + 2·y₁ + y₀
 ```
 
-En classe (A22), des personnes ont suggéré des approches
+En classe (A22, A25), des personnes ont suggéré des approches
 alternatives pour gérer le cas où ``y₂ = y₁ = y₀``.
 
 ## Alternative 1
@@ -149,6 +149,61 @@ qui est mieux que l'algorithme vu en classe dont l'espérance est 4:
              = 3 + (1/4) · 2
              = 3.5
 ```
+
+## Alternative 3
+
+Dans la troisième approche alternative, on choisit ``y₂`` en faisant
+une distinction entre l'égalité ou l'inégalité des deux premiers bits:
+
+```
+Entrée: —
+Sortie: nombre distribué uniformément parmi [1..6]
+
+  choisir un bit y₂ à pile ou face
+  choisir un bit y₁ à pile ou face
+
+  si y₂ = y₁:
+    y₀ ← 1 - y₁
+  sinon:
+    choisir un bit y₀ à pile ou face
+
+  retourner 4·y₂ + 2·y₁ + y₀
+```
+
+Cette procédure est biaisée. Par exemple, la probabilité de générer 6,
+c.-à-d. la chaîne ```110```, est de 1/4 plutôt que 1/6.
+
+En général, voici la distribution obtenue:
+
+|*1*|*2*|*3*|*4*|*5*|*6*|
+|---|---|---|---|---|---|
+|1/4|1/8|1/8|1/8|1/8|1/4|
+|0.25|0.125|0.125|0.125|0.125|0.125|0.125|0.25|
+
+L'espérance du nombre de lancers de pièces est de 2.5.
+
+## Alternative 4
+
+Dans la quatrième approche alternative, on choisit la position d'un bit
+qui sera ```1```, puis la position d'un bit qui sera ```0```, puis un
+bit aléatoire pour la dernière position:
+
+```
+Entrée: —
+Sortie: nombre distribué uniformément parmi [1..6]
+
+  choisir a ∈ {-1, 1} à pile ou face
+  choisir b ∈ {0, 1}  à pile ou face
+  choisir i ∈ {0, 1, 2} aléatoirement de façon uniforme    // Position du bit qui vaut 1
+  j ← (i + a) mod 3                                        // Position du bit qui vaut b
+
+  retourner 2ⁱ + b·2ʲ
+```
+
+Cette procédure fonctionne! Remarquons d'abord que, par construction, la chaîne de bits
+en sortie contient au moins une occurrence de ```0``` et de ```1```. Ainsi, la procédure
+ne retourne que des nombres de _[1..6]_. Évaluons la probabilité d'obtenir la chaîne
+_xyz_...
 
 ## Modélisation avec PRISM
 
