@@ -253,7 +253,7 @@ Sortie: nombre distribué uniformément parmi [1..6]
 ```
 
 Dans cette implémentation, L'espérance du nombre de lancers de pièces est de
-_2 + 1 / (3 / 4) = 2 + 4/3 = 10/3 = 3.33⋯_, ce qui est mieux que l'algorithme vu en classe
+_2 + 2·(1 / (3 / 4)) = 2 + 8/3 = 14/3 = 4.66⋯_, ce qui est pire que l'algorithme vu en classe
 dont l'espérance est 4.
 
 ## Modélisation avec PRISM
