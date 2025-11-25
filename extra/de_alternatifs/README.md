@@ -231,6 +231,31 @@ graph TD;
     10?-- 1/2 --->101;
 ```
 
+Il y a toutefois un enjeu avec cette approche: on suppose qu'on a accès à une pièce à trois faces.
+Si ce n'est pas le cas, on doit émuler cette pièce, par ex. comme suit:
+
+```
+Entrée: —
+Sortie: nombre distribué uniformément parmi [1..6]
+
+  choisir a ∈ {-1, 1} à pile ou face
+  choisir b ∈ {0, 1}  à pile ou face
+
+  faire:
+    choisir un bit i₁ à pile ou face
+    choisir un bit i₀ à pile ou face
+  tant que y₁ = y₀ = 1
+
+  i ← 2·i₁ + i₀        // Position du bit qui vaut 1
+  j ← (i + a) mod 3    // Position du bit qui vaut b
+
+  retourner 2ⁱ + b·2ʲ
+```
+
+Dans cette implémentation, L'espérance du nombre de lancers de pièces est de
+_2 + 1 / (3 / 4) = 2 + 4/3 = 10/3 = 3.33⋯_, ce qui est mieux que l'algorithme vu en classe
+dont l'espérance est 4.
+
 ## Modélisation avec PRISM
 
 Pour les personnes curieuses, sachez que ces analyses peuvent être automatisées à l'aide de
