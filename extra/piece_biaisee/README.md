@@ -33,21 +33,13 @@ particulier où _p = 1/3_, à l'aide de ce graphe de probabilités (mieux
 connu sous le nom savant de _[chaîne de Markov à temps
 discret](https://fr.wikipedia.org/wiki/Cha%C3%AEne_de_Markov)_):
 
-```mermaid
-graph LR;
-    ??-- 2/3 -->1?;
-    1?-- 1/3 -->10["10<br/><b>Face</b>"];
-    1?-- 2/3 -->??;
-
-    ??-- 1/3 -->0?;
-    0?-- 1/3 -->??;
-    0?-- 2/3 -->01["01<br/><b>Pile</b>"];
 ```
                 2/3           1/3          2/3          1/3
  "pile" (01) <------- (0?) <------- (??) ------> (1?) -------> (10) "face"
                        |            ^  ^           |
                        ------------/    \-----------
                             1/3             2/3
+```
 
 Ici, chaque sommet de la forme ```(ab)``` indique que le bit _a_ a été
 assigné à la variable _x_, et que le bit _b_ a été assigné à la
