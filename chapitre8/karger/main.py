@@ -89,6 +89,7 @@ class Karger(Scene):
         
         self.play(self.G.animate.add_vertices(uv,
                                               labels = SHOW_LABELS,
+                                              label_fill_color = ManimColor("#111111"),
                                               positions     = {uv: pos},
                                               vertex_config = config),
                   run_time = self.speed)
@@ -197,6 +198,7 @@ class Karger(Scene):
                      edges,
                      layout = LAYOUT,
                      labels = SHOW_LABELS,
+                     label_fill_color = ManimColor("#111111"),
                      vertex_config = {v: {"radius": RADIUS} for v in self.V},
                      edge_config   = {e: {"stroke_width": EDGE_WIDTH}
                                       for e in edges})
