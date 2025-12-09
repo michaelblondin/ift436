@@ -47,7 +47,8 @@ $$
 $$
 \begin{alignat}{3}
   & && \mathbb{P}(\text{retourner } m) \\\\[5pt]
-  &=\ && \sum_{i=0}^\infty \mathbb{P}(y_0 = y_1 = y_2)^i \cdot \mathbb{P}(\mathrm{val}(y_2, y_1, y_0) = m) \\\\[5pt]
+  &=\ && \sum_{i=0}^\infty \mathbb{P}(y_0 = y_1 = y_2)^i \cdot \mathbb{P}(\mathrm{val}(y_2, y_1, y_0) = m)
+  && \text{(car il y a un certain nombre $i$ d'itérations)} \\\\[5pt]
   &=\ && \sum_{i=0}^\infty (2 / 8)^i \cdot (1 / 8) \\\\[5pt]
   &=\ && (1 / 8) \cdot \sum_{i=0}^\infty (1 / 4)^i \\\\[5pt]
   &=\ && (1 / 8) \cdot (1 / (1 - 1/4))
