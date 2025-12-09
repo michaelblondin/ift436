@@ -1,20 +1,67 @@
-
 # Dé à six faces: analyse à l'aide d'un graphe de probabilités
 
 Rappelons qu'en classe, nous avons implémenté algorithmiquement 
 un dé à six faces à l'aide d'une pièce (non biaisée):
 
 ```
+val(b₂, b₁, b₀):
+  retourner 2²·b₂ + 2¹·b₁ + 2⁰·b₀
+
 faire:
   choisir un bit y₀ avec la pièce
   choisir un bit y₁ avec la pièce
   choisir un bit y₂ avec la pièce
 tant que y₀ = y₁ = y₂
 
-retourner 2²·y₂ + 2¹·y₁ + 2⁰·y₀
+retourner val(y₂, y₁, y₀)
 ```
 
-## Analyse à l'aide d'un graphe de probabilités
+## Combien de pièces pour émuler le dé?
+
+Soit $X$ la variable aléatoire qui compte le nombre d'itérations de la boucle.
+Puisque chaque itération de l'algorithme est indépendante des précédentes, _X_
+suit une loi géométrique. Ainsi, $\mathbb{E}[X] = 1 / p$, où $p$ est la probabilité de
+succès, c.-à-d. de quitter la boucle. Par conséquent, $\mathbb{E}[X] = 1 / (6 / 8) = 4/3$.
+
+## Émule-t-on véritablement une pièce de monnaie?
+
+Calculons la probabilité que l'algorithme retourne un certain nombre $m \in [1..6]$.
+
+### Aproche 1: probabilité conditionnelle
+
+Nous avons
+
+$$
+\begin{alignat}{3}
+  & && \mathbb{P}(\text{retourner } m) \\\\[5pt]
+  & && \mathbb{P}(\mathrm{val}(y_2, y_1, y_0) = m | \neg(y_0 = y_1 = y_2)) \\\\[5pt]
+  &=\ && \mathbb{P}(\mathrm{val}(y_2, y_1, y_0) = m \land \neg(y_0 = y_1 = y_2)) / \mathbb{P}(\neg(y_0 = y_1 = y_2))
+  && \text{(car $\mathbb{P}(A \mid B) = \mathbb{P}(A \cap B) / \mathbb{P}(B)$)} \\\\[5pt]
+  &=\ && \mathbb{P}(\mathrm{val}(y_2, y_1, y_0) = m) / \mathbb{P}(\neg(y_0 = y_1 = y_2))
+  && \text{(car $m \in [1..6]$)} \\\\[5pt]
+  &=\ && (1/8) / (6/8) \\\\[5pt]
+  &=\ && 1/6.
+\end{alignat}
+$$
+
+### Approche 2: série géométrique
+
+Nous avons
+
+$$
+\begin{alignat}{3}
+  & && \mathbb{P}(\text{retourner } m) \\\\[5pt]
+  &=\ && \sum_{i=0}^\infty \mathbb{P}(y_0 = y_1 = y_2)^i \cdot \mathbb{P}(\mathrm{val}(y_2, y_1, y_0) = m) \\\\[5pt]
+  &=\ && \sum_{i=0}^\infty (2 / 8)^i \cdot (1 / 8) \\\\[5pt]
+  &=\ && (1 / 8) \cdot \sum_{i=0}^\infty (1 / 4)^i \\\\[5pt]
+  &=\ && (1 / 8) \cdot (1 / (1 - 1/4))
+  && \text{(car $r^0 + r^1 + r^2 + \ldots = 1 / (1 - r)$ lorsque $0 < r < 1$)} \\\\[5pt]
+  &=\ && (1 / 8) \cdot (4 / 3) \\\\[5pt]
+  &=\ && 1 / 6.
+\end{alignat}
+$$
+
+### ★ Approche 3: analyse à l'aide d'un graphe de probabilités
 
 En classe (A23), j'ai tenté en vain d'analyser la probabilité que
 l'algorithme génère un nombre en particulier, à l'aide de ce graphe
@@ -36,7 +83,7 @@ assigné à la variable _y₂_, que le bit _b_ a été assigné à la
 variable _y₁_, et , que le bit _c_ a été assigné à la variable _y₀_,
 où ```?``` signifie que rien n'a été assigné.
 
-### Cycles
+#### Cycles
 
 Voici une analyse qui fonctionne. Cherchons à identifier la
 probabilité de débuter dans le sommet ```???``` et d'atteindre le
@@ -64,7 +111,7 @@ cycle de gauche, est de _1/2 · 1/2 · 1/2 = 1/8_. Similairement, la
 probabilité de produire un ```d```, c.-à-d. de choisir le cycle de
 droite, est de _1/8_.
 
-### Probabilité d'obtenir ```4```
+#### Probabilité d'obtenir ```4```
 
 Pour atteindre le sommet ```100``` à partir du sommet ```???```, on doit:
 
@@ -75,32 +122,21 @@ Pour atteindre le sommet ```100``` à partir du sommet ```???```, on doit:
 
 La probabilité d'obtenir ```4``` est donc de:
 
-```
-     ∞     n
-    \¯¯   \¯¯     /n\ 
-    /__   /__     \k/ · (1/8)ᵏ · (1/8)ⁿ⁻ᵏ · (1/2) · (1/2) · (1/2)
-   n = 0 k = 0
+$$
+\begin{alignat}{3}
+  & && \mathbb{P}(\text{retourner } 4) \\\\[5pt]
+  &=\ && \sum_{n=0}^\infty \sum_{k=0}^n {n \choose k} \cdot (1/8)^k \cdot (1/8)^{n-k} \cdot (1/2) \cdot (1/2) \cdot (1/2) \\\\[5pt]
+  &=\ && (1/8) \cdot \sum_{n=0}^\infty \sum_{k=0}^n {n \choose k} \cdot (1/8)^k \cdot (1/8)^{n-k} \\\\[5pt]
+  &=\ && (1/8) \cdot \sum_{n=0}^\infty (1/8 + 1/8)^n
+  && \text{(par la formule du binôme de Newton avec $x = 1/8$ et $y = 1/8$)} \\\\[5pt]
+  &=\ && (1/8) \cdot \sum_{n=0}^\infty (1/4)^n \\\\[5pt]
+  &=\ && (1/8) \cdot (1 / (1 - 1/4)) \\\\[5pt]
+  &=\ && (1/8) \cdot (4/3) \\\\[5pt]
+  &=\ && 1/6.
+\end{alignat}
+$$
 
-            ∞     n
-           \¯¯   \¯¯     /n\
-= (1/8) ·  /__   /__     \k/ · (1/8)ᵏ · (1/8)ⁿ⁻ᵏ
-           n = 0 k = 0
-
-             ∞  
-            \¯¯ 
-= (1/8) ·   /__   (1/8 + 1/8)ⁿ    [par la formule du binôme de Newton avec x = 1/8 et y = 1/8]
-           n = 0
-
-               1  
-= (1/8) ·  ---------              [car série géométrique de raison 2/8]
-           (1 - 2/8)
-
-= (1/8) · (4/3)
-
-= 1/6.
-```
-
-Le raisonnement pour les cinq autres valeurs est similaire. Dans tous les cas, on obtient _1/6_ comme attendu.
+Le raisonnement pour les cinq autres valeurs est similaire. Dans tous les cas, on obtient $1/6$ comme attendu.
 
 ### Liens
 
