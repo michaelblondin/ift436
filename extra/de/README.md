@@ -1,4 +1,4 @@
-# Dé à six faces: analyse à l'aide d'un graphe de probabilités
+# Dé à six faces: analyse de l'algorithme
 
 Rappelons qu'en classe, nous avons implémenté algorithmiquement 
 un dé à six faces à l'aide d'une pièce (non biaisée):
