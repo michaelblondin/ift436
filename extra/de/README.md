@@ -29,8 +29,6 @@ Calculons la probabilité que l'algorithme retourne un certain nombre $m \in [1.
 
 ### Aproche 1: probabilité conditionnelle
 
-Nous avons
-
 $$
 \begin{alignat}{3}
   & && \mathbb{P}(\text{retourner } m) \\\\[5pt]
@@ -45,8 +43,6 @@ $$
 $$
 
 ### Approche 2: série géométrique
-
-Nous avons
 
 $$
 \begin{alignat}{3}
