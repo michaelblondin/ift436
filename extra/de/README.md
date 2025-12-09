@@ -22,6 +22,7 @@ Soit $X$ la variable aléatoire qui compte le nombre d'itérations de la boucle.
 Puisque chaque itération de l'algorithme est indépendante des précédentes, _X_
 suit une loi géométrique. Ainsi, $\mathbb{E}[X] = 1 / p$, où $p$ est la probabilité de
 succès, c.-à-d. de quitter la boucle. Par conséquent, $\mathbb{E}[X] = 1 / (6 / 8) = 4/3$.
+Le nombre espéré de lancers de la pièce est donc $3 \cdot (4 / 3) = 4$.
 
 ## Émule-t-on véritablement une pièce de monnaie?
 
