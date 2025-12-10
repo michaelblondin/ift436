@@ -5,7 +5,7 @@ un dé à six faces à l'aide d'une pièce (non biaisée):
 
 ```
 val(b₂, b₁, b₀):
-  retourner 2²·b₂ + 2¹·b₁ + 2⁰·b₀
+  retourner 4b₂ + 2b₁ + b₀
 
 faire:
   choisir un bit y₀ avec la pièce
