@@ -30,7 +30,7 @@ Cette approche fonctionne, mais est inefficace car elle essaie systématiquement
 Le nombre de parenthésages est au moins exponentiel. En effet, par ex. chaque bloc de
 trois éléments consécutifs ```p[i] p[i+1] p[i+2]``` peut être parenthésé de deux façons:
 ```(p[i] ⊗ (p[i+1] ⊗ p[i+2]))``` ou ```((p[i] ⊗ p[i+1]) ⊗ p[i+2])```. Ainsi, il y a au moins 2<sup>n/3</sup> parenthésages.
-La complexité est en fait pire et en fait de _Ω((n-1)!)_.
+La complexité est en fait pire: _Ω((n-1)!)_.
 
 ## Approche par contractions 2.0: avec mémoïsation
 
